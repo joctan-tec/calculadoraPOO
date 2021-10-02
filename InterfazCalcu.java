@@ -416,6 +416,7 @@ public class InterfazCalcu extends javax.swing.JFrame {
     
     private void btnBlancoNegroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBlancoNegroActionPerformed
         // TODO add your handling code here:
+ 
         if (this.btnBlancoNegro.isSelected()){
             getContentPane().setBackground(new Color(53,53,53));
             this.btnBlancoNegro.setText("☀");
@@ -926,22 +927,32 @@ public class InterfazCalcu extends javax.swing.JFrame {
 
     private void txfPantallaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfPantallaKeyReleased
         // TODO add your handling code here:
-        Operaciones resultado = new Operaciones(this.txfPantalla.getText());
         
-        String screen = this.txfPantalla.getText();
          if (evt.getKeyChar()=='c'){
             this.txfPantalla.setText("");
         }else if (evt.getKeyChar()=='+') {
          
-        if (this.txfPantalla.getText().equals("")){
+        if (this.txfPantalla.getText().equals("+")){
             JOptionPane.showMessageDialog(this, "Debe existir un numero primero", "Error", JOptionPane.ERROR_MESSAGE);
+            this.txfPantalla.setText("");
         }else if (this.isBinary==false){
             if (this.isPrimo==false){
-              
+                String screen = this.txfPantalla.getText();
+                screen = screen.substring(0, screen.length()-1);
+                Operaciones resultado = new Operaciones(screen);
+                
+                System.out.println(screen);
+                //if(countChar(screen, '+')==1){
+                  //  this.txfPantalla.setText(screen);
+                    
+               // }
+                
+            
             if (resultado.existenDosNumero(resultado.getNum1(screen), resultado.getNum2(screen), resultado.getSigno(screen))){
+                this.txfPantalla.setText(screen);
                 this.txfPantalla.setText(resultado.getResultado()+"+");
                 }else {
-                this.txfPantalla.setText(this.txfPantalla.getText()+"+");
+       
                 }
             }else
             {
@@ -954,8 +965,223 @@ public class InterfazCalcu extends javax.swing.JFrame {
             this.isBinary=false;
             this.txfPantalla.setText("");
         }
+        
+        }else if (evt.getKeyChar()==' '){
+            if (!this.btnBlancoNegro.isSelected()){
+                
+            getContentPane().setBackground(new Color(53,53,53));
+            this.btnBlancoNegro.setText("☀");
+            this.btnAvg.setBackground(new Color(147,147,147));
+            this.btnBinario.setBackground(new Color(147,147,147));
+            this.btnC.setBackground(new Color(147,147,147));
+            this.btnData.setBackground(new Color(147,147,147));
+            this.btnDivision.setBackground(new Color(147,147,147));
+            this.btnIgual.setBackground(new Color( 245, 245, 245 ));
+            this.btnM.setBackground(new Color(147,147,147));
+            this.btnMultiplicacion.setBackground(new Color(147,147,147));
+            this.btnNumero0.setBackground(new Color(147,147,147));
+            this.btnNumero1.setBackground(new Color(147,147,147));
+            this.btnNumero2.setBackground(new Color(147,147,147));
+            this.btnNumero3.setBackground(new Color(147,147,147));
+            this.btnNumero4.setBackground(new Color(147,147,147));
+            this.btnNumero5.setBackground(new Color(147,147,147));
+            this.btnNumero6.setBackground(new Color(147,147,147));
+            this.btnNumero7.setBackground(new Color(147,147,147));
+            this.btnNumero8.setBackground(new Color(147,147,147));
+            this.btnNumero9.setBackground(new Color(147,147,147));
+            this.btnNumero0.setBackground(new Color(147,147,147));
+            this.btnPrimo.setBackground(new Color(147,147,147));
+            this.btnPunto.setBackground(new Color(147,147,147));
+            this.btnResta.setBackground(new Color(147,147,147));
+            this.btnSuma.setBackground(new Color(147,147,147));
+            this.btnBlancoNegro.setSelected(true);
+            this.txfPantalla.setText("");
+            
+           
+        }else{
+            getContentPane().setBackground(new Color( 238, 248, 255 ));
+            this.btnBlancoNegro.setText("☾");
+            this.btnAvg.setBackground(new Color(197,233,255));
+            this.btnBinario.setBackground(new Color(197,233,255));
+            this.btnC.setBackground(new Color(197,233,255));
+            this.btnData.setBackground(new Color(197,233,255));
+            this.btnDivision.setBackground(new Color(197,233,255));
+            this.btnIgual.setBackground(new Color( 117, 178, 214 ));
+            this.btnM.setBackground(new Color(197,233,255));
+            this.btnMultiplicacion.setBackground(new Color(197,233,255));
+            this.btnNumero0.setBackground(new Color(197,233,255));
+            this.btnNumero1.setBackground(new Color(197,233,255));
+            this.btnNumero2.setBackground(new Color(197,233,255));
+            this.btnNumero3.setBackground(new Color(197,233,255));
+            this.btnNumero4.setBackground(new Color(197,233,255));
+            this.btnNumero5.setBackground(new Color(197,233,255));
+            this.btnNumero6.setBackground(new Color(197,233,255));
+            this.btnNumero7.setBackground(new Color(197,233,255));
+            this.btnNumero8.setBackground(new Color(197,233,255));
+            this.btnNumero9.setBackground(new Color(197,233,255));
+            this.btnNumero0.setBackground(new Color(197,233,255));
+            this.btnPrimo.setBackground(new Color(197,233,255));
+            this.btnPunto.setBackground(new Color(197,233,255));
+            this.btnResta.setBackground(new Color(197,233,255));
+            this.btnSuma.setBackground(new Color(197,233,255));
+            this.btnBlancoNegro.setSelected(false);
+            this.txfPantalla.setText("");
         }
+        }else if (evt.getKeyChar()=='\n') {
+            String screen = this.txfPantalla.getText();
+            screen = screen.substring(0, screen.length());
+            Operaciones resultado = new Operaciones(screen);
+            if(resultado.existeUnNumero(resultado.getNum1(screen), 
+                resultado.getNum2(screen), resultado.getSigno(screen))){
+            Double num =    Double.parseDouble(screen);
+            this.txfPantalla.setText(num+"");
+            
+        }else{
+            this.txfPantalla.setText(resultado.getResultado()+"");
+        }
+            
+  
+        }
+         else if (evt.getKeyChar()=='*') {
+         
+        if (this.txfPantalla.getText().equals("*")){
+            JOptionPane.showMessageDialog(this, "Debe existir un numero primero", "Error", JOptionPane.ERROR_MESSAGE);
+            this.txfPantalla.setText("");
+        }else if (this.isBinary==false){
+            if (this.isPrimo==false){
+                String screen = this.txfPantalla.getText();
+                screen = screen.substring(0, screen.length()-1);
+                Operaciones resultado = new Operaciones(screen);
+                
+                System.out.println(screen);
+                //if(countChar(screen, '+')==1){
+                  //  this.txfPantalla.setText(screen);
+                    
+               // }
+                
+            
+            if (resultado.existenDosNumero(resultado.getNum1(screen), resultado.getNum2(screen), resultado.getSigno(screen))){
+                this.txfPantalla.setText(screen);
+                this.txfPantalla.setText(resultado.getResultado()+"*");
+                }else {
        
+                }
+            }else
+            {
+                JOptionPane.showMessageDialog(this, "No se puede trabajar con Booleanos", "Error", JOptionPane.ERROR_MESSAGE);
+                this.isPrimo = false;
+                this.txfPantalla.setText("");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "No se puede tranajar con binarios", "Error", JOptionPane.ERROR_MESSAGE);
+            this.isBinary=false;
+            this.txfPantalla.setText("");
+        }
+        
+        }else if (evt.getKeyChar()=='/') {
+         
+        if (this.txfPantalla.getText().equals("/")){
+            JOptionPane.showMessageDialog(this, "Debe existir un numero primero", "Error", JOptionPane.ERROR_MESSAGE);
+            this.txfPantalla.setText("");
+        }else if (this.isBinary==false){
+            if (this.isPrimo==false){
+                String screen = this.txfPantalla.getText();
+                screen = screen.substring(0, screen.length()-1);
+                Operaciones resultado = new Operaciones(screen);
+                
+                System.out.println(screen);
+                //if(countChar(screen, '+')==1){
+                  //  this.txfPantalla.setText(screen);
+                    
+               // }
+                
+            
+            if (resultado.existenDosNumero(resultado.getNum1(screen), resultado.getNum2(screen), resultado.getSigno(screen))){
+                this.txfPantalla.setText(screen);
+                this.txfPantalla.setText(resultado.getResultado()+"/");
+                }else {
+       
+                }
+            }else
+            {
+                JOptionPane.showMessageDialog(this, "No se puede trabajar con Booleanos", "Error", JOptionPane.ERROR_MESSAGE);
+                this.isPrimo = false;
+                this.txfPantalla.setText("");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "No se puede tranajar con binarios", "Error", JOptionPane.ERROR_MESSAGE);
+            this.isBinary=false;
+            this.txfPantalla.setText("");
+        }
+        
+        }
+         
+         else if (evt.getKeyChar()=='-') {
+         
+        
+            if (this.isBinary==false){
+            if (this.isPrimo==false){
+                String screen = this.txfPantalla.getText();
+                screen = screen.substring(0, screen.length()-1);
+                Operaciones resultado = new Operaciones(screen);
+                
+                if (this.isBinary==false){
+                if (this.isPrimo==false){
+                    if (screen.equals("")){
+                        this.txfPantalla.setText("-");
+                    }else if (screen.equals("-")){
+                        this.txfPantalla.setText("");
+                
+                        //checkear esta parte del codigo, no quiere funcar el cambio de - - a +
+                    }else if(screen.substring(screen.length()-1).equals("-")){
+                
+                            System.out.println("FUCK");
+                            int end = screen.length()-1;
+                            this.txfPantalla.setText(screen.substring(0,end )+"+");
+                    } else if (resultado.existenDosNumero(resultado.getNum1(screen), resultado.getNum2(screen), resultado.getSigno(screen))){
+                        System.out.println("FUCK  fbbff");
+                        this.txfPantalla.setText(resultado.getResultado()+"-");
+                        }else {
+                       
+                    }
+                    }else{
+                        JOptionPane.showMessageDialog(this, "No se puede tranajar con booleanos", "Error", JOptionPane.ERROR_MESSAGE);
+                        this.isPrimo=false;
+                        this.txfPantalla.setText("");
+                }
+            }else{
+                        JOptionPane.showMessageDialog(this, "No se puede tranajar con binarios", "Error", JOptionPane.ERROR_MESSAGE);
+                        this.isBinary=false;
+                        this.txfPantalla.setText("");
+                    }
+            }
+            }
+         }
+         else if (evt.getKeyChar()=='.') {
+         
+        if (this.txfPantalla.getText().equals(".")){
+            JOptionPane.showMessageDialog(this, "Debe existir un numero primero", "Error", JOptionPane.ERROR_MESSAGE);
+            this.txfPantalla.setText("");
+        }else if (this.isBinary==false){
+            if (this.isPrimo==false){
+                String screen = this.txfPantalla.getText();
+                screen = screen.substring(0, screen.length()-1);
+                Operaciones resultado = new Operaciones(screen);
+                
+                 if (this.isPoint(screen)){
+            JOptionPane.showMessageDialog(this, "Error de sintaxis", "Error", JOptionPane.ERROR_MESSAGE);
+                 this.txfPantalla.setText("");
+                 }
+        else if(this.txfPantalla.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "No se puede poner un punto si no hay números", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }else{
+           // this.txfPantalla.setText(this.txfPantalla.getText()+".");
+        }
+        
+        }
+        }
+         }
     }//GEN-LAST:event_txfPantallaKeyReleased
 
     /**
