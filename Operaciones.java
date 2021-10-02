@@ -27,21 +27,29 @@ public class Operaciones {
     }
     
     public double getResultado(){
+        String path = "C:\\Users\\Joctan Esquivel\\Documents\\TEC\\Semestre II\\POO\\calculadora\\Bitacora.txt";
+         Data archivo = new Data();
+         archivo.createFile(path);
         double resultado;
         switch (this.signo){
             case 1:
                 resultado= this.numero1+this.numero2;
+                archivo.writeToFile(path, this.numero1+" + "+this.numero2+" = "+resultado+"\n");
+                
                 return resultado;
               
             case 2:
                resultado= this.numero1-this.numero2;
+               archivo.writeToFile(path, this.numero1+" - "+this.numero2+" = "+resultado+"\n");
                return resultado;
             case 3:
                 resultado= this.numero1*this.numero2;
+                archivo.writeToFile(path, this.numero1+" * "+this.numero2+" = "+resultado+"\n");
                 return resultado;
             case 4:
                 if (this.numero2!=0){
                     resultado= this.numero1/this.numero2;
+                    archivo.writeToFile(path, this.numero1+" / "+this.numero2+" = "+resultado+"\n");
                     return resultado;
                 }
                 
@@ -214,17 +222,23 @@ public class Operaciones {
     }
     
     public String toBinary(String numero){
-        
+        String path = "C:\\Users\\Joctan Esquivel\\Documents\\TEC\\Semestre II\\POO\\calculadora\\Bitacora.txt";
+        Data archivo = new Data();
+        archivo.createFile(path);
         if (this.existeUnNumero(this.numero1,this.numero2,this.signo)){
             int numeroConvertido = this.convertirAEntero(numero);
             if (numeroConvertido==-54564457){
                 return "ERROR";
             }
             String binario = Integer.toBinaryString(numeroConvertido);
+            
+            archivo.writeToFile(path, "Binario " + numeroConvertido + " = "+binario+"\n");
             return binario;       
         }else if(this.numero1 != 0 & this.numero2!=0 & this.signo!=0){
             try{
-                String binario = Integer.toBinaryString((int)this.getResultado());
+                int resultado = (int)this.getResultado();
+                String binario = Integer.toBinaryString(resultado);
+                archivo.writeToFile(path, "Binario  "+resultado+" = "+ binario +"\n");
             return binario; 
             }catch(Exception e){
                 
@@ -249,15 +263,19 @@ public class Operaciones {
             return false;   
     }
     public String esPrimo(String numero){
+        String path = "C:\\Users\\Joctan Esquivel\\Documents\\TEC\\Semestre II\\POO\\calculadora\\Bitacora.txt";
+        Data archivo = new Data();
+        archivo.createFile(path);
         if (this.existeUnNumero(this.numero1,this.numero2,this.signo)){
             int numeroConvertido = this.convertirAEntero(numero);
             if (numeroConvertido==-54564457){
                 return "ERROR";
             }
             if(this.primo(numeroConvertido)){
+                 archivo.writeToFile(path, "Primo " + numeroConvertido + " = True\n");
                 return "True";
             }
-            
+            archivo.writeToFile(path, "Primo " + numeroConvertido + " = False\n");
             return "False";       
         }else if(this.numero1 != 0 & this.numero2!=0 & this.signo!=0){
             try{
@@ -266,9 +284,11 @@ public class Operaciones {
                 return "ERROR";
             }
             if(this.primo(resultado)){
+                archivo.writeToFile(path, "Primo " + resultado + " = True\n");
                 return "True";
             }
-            
+            archivo.writeToFile(path, "Primo " + resultado + " = False\n");
+             
             return "False"; 
                 
                 

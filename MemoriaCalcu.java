@@ -14,18 +14,10 @@ import java.util.ArrayList;
 public class MemoriaCalcu {
     
     private int indice = 0;
-    private ArrayList <Double> memory;
-    
-    
-    MemoriaCalcu(){
-        memory = new ArrayList <Double>();
-    }
-    
+    private ArrayList <Double> memory= new ArrayList <Double>();
     
     public void addMemory(double resul){
-        
             try {
-              
                     if(indice<10){
                         this.memory.set(indice, resul);
                         indice++;
@@ -33,13 +25,11 @@ public class MemoriaCalcu {
                         this.indice=0;
                         this.memory.set(indice, resul);
                         indice++;
-                    }
-                    
+                    } 
             }catch (Exception NullPointerException) {
                 this.memory.add(indice, resul);
                 indice++;
-                
-        }
+             }   
     }
     
     
@@ -47,15 +37,13 @@ public class MemoriaCalcu {
         double resultadoSumas = 0;
         
         for (Double numero : memory) {
-            resultadoSumas+=numero;
-            
+            resultadoSumas+=numero;  
         }
-        
-        
-        
-        
-        
         return resultadoSumas/this.memory.size();
+    }
+    
+    public boolean isEmpty(){
+        return memory.isEmpty();
     }
     
     

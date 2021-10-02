@@ -16,8 +16,10 @@ public class Calculadora {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         //InterfazCalcu window  = new InterfazCalcu();
-         //window.setVisible(true);
+        
+//         archivo.writeToFile(path,"Cree un archivo mamahuevo");
+         InterfazCalcu window  = new InterfazCalcu();
+         window.setVisible(true);
         //Operaciones x=new Operaciones("12");
         //System.out.println(x.esPrimo("5"));
         //System.out.println(15.56-15.56%1);
@@ -28,17 +30,17 @@ public class Calculadora {
         //String screen = "1-";
         //System.out.println(screen.substring(screen.length()-1));
         //System.out.println(screen.substring(0, screen.length()-1)+"+");
-         MemoriaCalcu p = new MemoriaCalcu();
+         //MemoriaCalcu p = new MemoriaCalcu();
          
-         p.addMemory(100.0);
-         p.addMemory(85.0);
-         p.addMemory(100.0);
-         p.addMemory(100.0);
-         p.addMemory(90.0);
+         //p.addMemory(10);
+         //p.addMemory(15);
+         //p.addMemory(20);
+         
+
          
          
          
-         System.out.println(p.promedio());
+         //System.out.println(p.promedio());
         
         /*
         String x ="45.6*34.8";
