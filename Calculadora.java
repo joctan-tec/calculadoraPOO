@@ -20,7 +20,7 @@ public class Calculadora {
 //         archivo.writeToFile(path,"Cree un archivo mamahuevo");
          InterfazCalcu window  = new InterfazCalcu();
          window.setVisible(true);
-        //Operaciones x=new Operaciones("12");
+        //Operaciones x=new Operaciones("12/0");
         //System.out.println(x.esPrimo("5"));
         //System.out.println(15.56-15.56%1);
         //System.out.println(x.getResultado());

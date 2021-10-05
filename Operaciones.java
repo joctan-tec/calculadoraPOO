@@ -16,7 +16,8 @@ public class Operaciones {
     // 2 = resta
     // 3 = multiplicacion
     // 4 = division
-    private int signo;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    private int signo;          
+    
     
     public Operaciones(String screen){
        this.setNumero1(this.getNum1(screen));
@@ -27,30 +28,39 @@ public class Operaciones {
     }
     
     public double getResultado(){
-        String path = "C:\\Users\\Joctan Esquivel\\Documents\\TEC\\Semestre II\\POO\\calculadora\\Bitacora.txt";
+         String path = "C:\\Users\\Joctan Esquivel\\Documents\\TEC\\Semestre II\\POO\\calculadora\\Bitacora.txt";
          Data archivo = new Data();
          archivo.createFile(path);
+         
         double resultado;
         switch (this.signo){
             case 1:
                 resultado= this.numero1+this.numero2;
                 archivo.writeToFile(path, this.numero1+" + "+this.numero2+" = "+resultado+"\n");
                 
+                
                 return resultado;
               
             case 2:
                resultado= this.numero1-this.numero2;
                archivo.writeToFile(path, this.numero1+" - "+this.numero2+" = "+resultado+"\n");
+               
                return resultado;
             case 3:
                 resultado= this.numero1*this.numero2;
                 archivo.writeToFile(path, this.numero1+" * "+this.numero2+" = "+resultado+"\n");
+               
                 return resultado;
             case 4:
                 if (this.numero2!=0){
+                    
                     resultado= this.numero1/this.numero2;
                     archivo.writeToFile(path, this.numero1+" / "+this.numero2+" = "+resultado+"\n");
+                    
                     return resultado;
+                }
+                else{
+                    return -1.23456789;
                 }
                 
                 
@@ -233,6 +243,7 @@ public class Operaciones {
             String binario = Integer.toBinaryString(numeroConvertido);
             
             archivo.writeToFile(path, "Binario " + numeroConvertido + " = "+binario+"\n");
+
             return binario;       
         }else if(this.numero1 != 0 & this.numero2!=0 & this.signo!=0){
             try{
@@ -273,9 +284,11 @@ public class Operaciones {
             }
             if(this.primo(numeroConvertido)){
                  archivo.writeToFile(path, "Primo " + numeroConvertido + " = True\n");
+                 
                 return "True";
             }
             archivo.writeToFile(path, "Primo " + numeroConvertido + " = False\n");
+           
             return "False";       
         }else if(this.numero1 != 0 & this.numero2!=0 & this.signo!=0){
             try{

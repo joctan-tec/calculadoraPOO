@@ -70,8 +70,9 @@ public class InterfazCalcu extends javax.swing.JFrame {
         btnC = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("La calculadora mas pichuda FUCK JAVIER");
+        setTitle("jCalculadora\n");
         setBackground(new java.awt.Color(238, 248, 255));
+        setBounds(new java.awt.Rectangle(300, 100, 0, 0));
 
         txfPantalla.setBackground(new java.awt.Color(255, 255, 255));
         txfPantalla.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 36)); // NOI18N
@@ -108,6 +109,11 @@ public class InterfazCalcu extends javax.swing.JFrame {
         btnData.setBackground(new java.awt.Color(197, 233, 255));
         btnData.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btnData.setText("Data");
+        btnData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDataActionPerformed(evt);
+            }
+        });
 
         btnNumero1.setBackground(new java.awt.Color(197, 233, 255));
         btnNumero1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -400,7 +406,7 @@ public class InterfazCalcu extends javax.swing.JFrame {
                             .addComponent(btnC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnPunto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSuma, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
 
         pack();
@@ -415,6 +421,7 @@ public class InterfazCalcu extends javax.swing.JFrame {
 
     private void btnPrimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimoActionPerformed
         // TODO add your handling code here:
+         if (isBinary==false & isPrimo==false){
         Operaciones numero = new Operaciones(this.txfPantalla.getText());
         
         if (numero.existeUnNumero(numero.getNum1(this.txfPantalla.getText()),
@@ -431,7 +438,12 @@ public class InterfazCalcu extends javax.swing.JFrame {
             this.isPrimo=true;
         
         
-    }    
+            }    
+        }else{
+             JOptionPane.showMessageDialog(this, "No se puede trabajar con Binarios o Booleanos", "Error", JOptionPane.ERROR_MESSAGE);
+             this.txfPantalla.setText("");
+             this.isPrimo=false;
+         }
     }//GEN-LAST:event_btnPrimoActionPerformed
 
     
@@ -750,7 +762,14 @@ public class InterfazCalcu extends javax.swing.JFrame {
             
             
             if (resultado.existenDosNumero(resultado.getNum1(screen), resultado.getNum2(screen), resultado.getSigno(screen))){
-                this.txfPantalla.setText(resultado.getResultado()+"/");
+                double resul=resultado.getResultado();
+                System.out.println(-1.23456789==resul);
+                if (resul!=-1.23456789){
+                    this.txfPantalla.setText(resul+"/");
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se puede dividir por 0", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                
                 }else {
                 this.txfPantalla.setText(this.txfPantalla.getText()+"/");
                 }
@@ -806,10 +825,6 @@ public class InterfazCalcu extends javax.swing.JFrame {
         Operaciones resultado = new Operaciones(this.txfPantalla.getText());
         
         String screen = this.txfPantalla.getText();
-        
-        
-           
-        
        
             if (this.isBinary==false){
                 if (this.isPrimo==false){
@@ -825,7 +840,7 @@ public class InterfazCalcu extends javax.swing.JFrame {
                             int end = screen.length()-1;
                             this.txfPantalla.setText(screen.substring(0,end )+"+");
                     } else if (resultado.existenDosNumero(resultado.getNum1(screen), resultado.getNum2(screen), resultado.getSigno(screen))){
-                        System.out.println("FUCK  fbbff");
+      
                         this.txfPantalla.setText(resultado.getResultado()+"-");
                         }else {
                         this.txfPantalla.setText(this.txfPantalla.getText()+"-");
@@ -921,15 +936,23 @@ public class InterfazCalcu extends javax.swing.JFrame {
             archivo.writeToFile(path, num + " = "+num+"\n");
             
         }else{
-            this.txfPantalla.setText(resultado.getResultado()+"");
+            double resul=resultado.getResultado();
+                System.out.println(-1.23456789==resul);
+                if (resul!=-1.23456789){
+                    this.txfPantalla.setText(resul+"");
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se puede dividir por 0", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            
         }
         
     }//GEN-LAST:event_btnIgualActionPerformed
 
     private void btnBinarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBinarioActionPerformed
         // TODO add your handling code here:
+        if (isBinary==false & isPrimo==false){
         Operaciones numero = new Operaciones(this.txfPantalla.getText());
-        
+       
         if (numero.existeUnNumero(numero.getNum1(this.txfPantalla.getText()),
                 numero.getNum2(this.txfPantalla.getText()) , numero.getSigno(this.txfPantalla.getText()))){
             this.txfPantalla.setText(numero.toBinary(this.txfPantalla.getText()));
@@ -942,11 +965,14 @@ public class InterfazCalcu extends javax.swing.JFrame {
 
             this.txfPantalla.setText(numero.toBinary(this.txfPantalla.getText()));
             this.isBinary=true;
-            
-            
-            
-            
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "No se puede trabajar con Binarios o Booleanos", "Error", JOptionPane.ERROR_MESSAGE);
+            this.txfPantalla.setText("");
+             this.isBinary=false;
+        }
+            
+       
         
        
         
@@ -1065,7 +1091,13 @@ public class InterfazCalcu extends javax.swing.JFrame {
             this.txfPantalla.setText(num+"");
             
         }else{
-            this.txfPantalla.setText(resultado.getResultado()+"");
+             double resul=resultado.getResultado();
+                System.out.println(-1.23456789==resul);
+                if (resul!=-1.23456789){
+                    this.txfPantalla.setText(resul+"");
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se puede dividir por 0", "Error", JOptionPane.ERROR_MESSAGE);
+                }
         }
             
   
@@ -1239,6 +1271,22 @@ public class InterfazCalcu extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnAvgActionPerformed
+
+    private void btnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataActionPerformed
+        // TODO add your handling code here:
+        
+        Historial ventanaNueva = new Historial();
+        ventanaNueva.setVisible(true);
+        try{
+            ventanaNueva.fillHistorial();
+            ventanaNueva.actualizarHistorial();
+        }catch(Exception e){
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnDataActionPerformed
 
     /**
      * @param args the command line arguments
